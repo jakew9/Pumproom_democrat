@@ -9,7 +9,7 @@ window.SITE_CONTENT = {
     name: "The Pump Room",
     domain: "pumproom.democrat",
     statusLabel: "STUDIO ONLINE • BUILDING NEW THINGS",
-    tagline: "Things I'm building, testing, and sharing.",
+    tagline: "Things I’m building, testing, and sharing.",
     description:
       "Welcome to pumproom.democrat — a home base for family, friends, and curious visitors to check out the apps, media projects, and weekend experiments coming off the workbench.",
     aboutHeading: "What happens in the Pump Room?",
@@ -18,7 +18,7 @@ window.SITE_CONTENT = {
     locationTag: "Static Edge Site",
   },
 
-  // Highlighted build shown in the hero "Now on the Bench" studio monitor
+  // Highlighted build shown in the initial hero "NOW ON THE BENCH" studio monitor
   featured: {
     badge: "NOW ON THE BENCH",
     title: "Home Media & App Lab",
@@ -32,6 +32,61 @@ window.SITE_CONTENT = {
     ],
     projectId: "living-room-tv",
   },
+
+  // Scroll-scrubbed chapters inside the sticky NOW ON THE BENCH stage (p: 0 -> 1)
+  benchStages: [
+    {
+      index: "01",
+      shortLabel: "Active Build",
+      badge: "NOW ON THE BENCH",
+      subtitle: "Active Build • v1.0",
+      title: "Home Media & App Lab",
+      summary:
+        "Building custom living-room media experiences, retro channel apps, and small tools that make everyday tech more fun for the whole family.",
+      caption: "Phase 01 — Designing calm, clutter-free living-room apps.",
+      visualMode: "eq",
+      metrics: [
+        { label: "Status", value: "In Active Dev" },
+        { label: "Focus", value: "Apps & Media" },
+        { label: "Access", value: "Web & Living Room" },
+      ],
+      projectId: "living-room-tv",
+    },
+    {
+      index: "02",
+      shortLabel: "Media & Studio",
+      badge: "BENCH STAGE 02 • SIGNAL",
+      subtitle: "Studio Desk • Media Reel",
+      title: "Curated Clips, Audio & Broadcast Feeds",
+      summary:
+        "Packaging video edits, retro streams, and family highlight reels into one fast, dark-mode broadcast desk without noisy feeds.",
+      caption: "Phase 02 — Turning raw recordings into shareable studio sessions.",
+      visualMode: "signal",
+      metrics: [
+        { label: "Format", value: "Video & Audio" },
+        { label: "Playback", value: "Zero Clutter" },
+        { label: "Sharing", value: "Family & Friends" },
+      ],
+      projectId: "audio-visual-sessions",
+    },
+    {
+      index: "03",
+      shortLabel: "Edge Shipping",
+      badge: "BENCH STAGE 03 • LIVE",
+      subtitle: "Shipped • pumproom.democrat",
+      title: "Fast Prototypes Off the Workbench",
+      summary:
+        "Every experiment, utility, and finished build lands right here on pumproom.democrat — scroll down to browse every build and dispatch.",
+      caption: "Phase 03 — Continuously shipping updates straight from the bench.",
+      visualMode: "grid",
+      metrics: [
+        { label: "Delivery", value: "Global Edge" },
+        { label: "Builds", value: "4 Active Tracks" },
+        { label: "Next", value: "Explore Below" },
+      ],
+      projectId: "pumproom-site",
+    },
+  ],
 
   // Categories shown in the filter bar
   categories: [
