@@ -1,28 +1,22 @@
 // ============================================================================
-// PUMPROOM.DEMOCRAT — Site Content & Showcase Data
+// PUMPROOM.DEMOCRAT — Front Page Content Data
 // ============================================================================
-// Edit this file to update text, add new projects, swap in real screenshots,
-// or post fresh updates for family and friends. No HTML edits required!
 
 window.SITE_CONTENT = {
   brand: {
     name: "The Pump Room",
     domain: "pumproom.democrat",
-    statusLabel: "STUDIO ONLINE • BUILDING NEW THINGS",
+    statusLabel: "STUDIO ONLINE · BUILDING NEW THINGS",
     tagline: "Things I’m building, testing, and sharing.",
     description:
       "Welcome to pumproom.democrat — a home base for family, friends, and curious visitors to check out the apps, media projects, and weekend experiments coming off the workbench.",
-    aboutHeading: "What happens in the Pump Room?",
-    aboutCopy:
-      "This site is my digital workshop and broadcast desk. Whenever I'm tinkering with a new app, putting together media projects, or building tools for home and family, this is where I drop demos, progress notes, and finished builds so everyone can see what's cooking.",
-    locationTag: "Static Edge Site",
   },
 
-  // Highlighted build shown in the initial hero "NOW ON THE BENCH" studio monitor
+  // Initial spotlight build shown at scroll progress 0
   featured: {
     badge: "NOW ON THE BENCH",
+    subtitle: "Active Build · v1.0",
     title: "Home Media & App Lab",
-    subtitle: "Active Build • v1.0",
     summary:
       "Building custom living-room media experiences, retro channel apps, and small tools that make everyday tech more fun for the whole family.",
     metrics: [
@@ -33,18 +27,15 @@ window.SITE_CONTENT = {
     projectId: "living-room-tv",
   },
 
-  // Scroll-scrubbed chapters inside the sticky NOW ON THE BENCH stage (p: 0 -> 1)
+  // Scroll-scrubbed states inside the sticky NOW ON THE BENCH stage (p: 0 -> 1)
   benchStages: [
     {
       index: "01",
-      shortLabel: "Active Build",
       badge: "NOW ON THE BENCH",
-      subtitle: "Active Build • v1.0",
+      subtitle: "Active Build · v1.0",
       title: "Home Media & App Lab",
       summary:
         "Building custom living-room media experiences, retro channel apps, and small tools that make everyday tech more fun for the whole family.",
-      caption: "Phase 01 — Designing calm, clutter-free living-room apps.",
-      visualMode: "eq",
       metrics: [
         { label: "Status", value: "In Active Dev" },
         { label: "Focus", value: "Apps & Media" },
@@ -54,56 +45,39 @@ window.SITE_CONTENT = {
     },
     {
       index: "02",
-      shortLabel: "Media & Studio",
-      badge: "BENCH STAGE 02 • SIGNAL",
-      subtitle: "Studio Desk • Media Reel",
-      title: "Curated Clips, Audio & Broadcast Feeds",
+      badge: "NOW ON THE BENCH · 02",
+      subtitle: "Studio Desk · Media Reel",
+      title: "Studio Clips & Media Reel",
       summary:
-        "Packaging video edits, retro streams, and family highlight reels into one fast, dark-mode broadcast desk without noisy feeds.",
-      caption: "Phase 02 — Turning raw recordings into shareable studio sessions.",
-      visualMode: "signal",
+        "A curated corner for video edits, audio recordings, slideshows, and behind-the-scenes clips without hunting through group chats.",
       metrics: [
-        { label: "Format", value: "Video & Audio" },
-        { label: "Playback", value: "Zero Clutter" },
-        { label: "Sharing", value: "Family & Friends" },
+        { label: "Status", value: "Coming Soon" },
+        { label: "Focus", value: "Video & Audio" },
+        { label: "Access", value: "Family & Friends" },
       ],
       projectId: "audio-visual-sessions",
     },
     {
       index: "03",
-      shortLabel: "Edge Shipping",
-      badge: "BENCH STAGE 03 • LIVE",
-      subtitle: "Shipped • pumproom.democrat",
-      title: "Fast Prototypes Off the Workbench",
+      badge: "NOW ON THE BENCH · 03",
+      subtitle: "Shipped · pumproom.democrat",
+      title: "Weekend Workshop Prototypes",
       summary:
-        "Every experiment, utility, and finished build lands right here on pumproom.democrat — scroll down to browse every build and dispatch.",
-      caption: "Phase 03 — Continuously shipping updates straight from the bench.",
-      visualMode: "grid",
+        "Quick scripts, small utilities, and creative experiments spun up to test new ideas and share finished builds straight from the bench.",
       metrics: [
-        { label: "Delivery", value: "Global Edge" },
-        { label: "Builds", value: "4 Active Tracks" },
-        { label: "Next", value: "Explore Below" },
+        { label: "Status", value: "Ongoing" },
+        { label: "Focus", value: "Tools & Web" },
+        { label: "Access", value: "Live Below" },
       ],
-      projectId: "pumproom-site",
+      projectId: "weekend-prototypes",
     },
   ],
 
-  // Categories shown in the filter bar
-  categories: [
-    { id: "all", label: "All Builds" },
-    { id: "apps", label: "Apps & Code" },
-    { id: "media", label: "Media & Studio" },
-    { id: "family", label: "Family & Home" },
-    { id: "experiments", label: "Experiments" },
-  ],
-
-  // Showcase projects — add, edit, or remove objects here.
-  // Tip: Add `image: "./images/my-shot.jpg"` to display a real screenshot/photo!
+  // Workbench cards shown below the sticky stage
   projects: [
     {
       id: "living-room-tv",
       title: "Custom TV & Media Experience",
-      category: "apps",
       categoryLabel: "Apps & Code",
       status: "In Progress",
       statusTone: "amber",
@@ -115,14 +89,11 @@ window.SITE_CONTENT = {
       details:
         "Built to turn a regular screen into a cozy, zero-clutter broadcast channel. Supports custom playlists, clean remote navigation, and smooth playback without noisy algorithms getting in the way.",
       tags: ["TV App", "Media", "UI Design"],
-      links: [
-        { label: "Read Notes", action: "modal" },
-      ],
+      links: [{ label: "Read Notes" }],
     },
     {
       id: "pumproom-site",
       title: "pumproom.democrat Home Base",
-      category: "family",
       categoryLabel: "Family & Home",
       status: "Live",
       statusTone: "green",
@@ -134,14 +105,11 @@ window.SITE_CONTENT = {
       details:
         "Designed for zero friction: pure static files served fast worldwide, with a single content file so new projects, photos, and updates can be published in seconds.",
       tags: ["Web", "Studio UI", "Showcase"],
-      links: [
-        { label: "Read Notes", action: "modal" },
-      ],
+      links: [{ label: "Read Notes" }],
     },
     {
       id: "audio-visual-sessions",
       title: "Studio Clips & Media Reel",
-      category: "media",
       categoryLabel: "Media & Studio",
       status: "Coming Soon",
       statusTone: "cyan",
@@ -153,14 +121,11 @@ window.SITE_CONTENT = {
       details:
         "A dedicated place to share videos, recordings, or family highlight reels without having to hunt through group chats or expiring links.",
       tags: ["Video", "Audio", "Showcase"],
-      links: [
-        { label: "Preview Concept", action: "modal" },
-      ],
+      links: [{ label: "Preview Concept" }],
     },
     {
       id: "weekend-prototypes",
       title: "Weekend Workshop Prototypes",
-      category: "experiments",
       categoryLabel: "Experiments",
       status: "Ongoing",
       statusTone: "amber",
@@ -172,13 +137,11 @@ window.SITE_CONTENT = {
       details:
         "Not every project needs to be huge. This shelf collects bite-sized web toys, automation helpers, and visual tests worth sharing with anyone curious about what's next.",
       tags: ["Prototypes", "Tools", "Creative Coding"],
-      links: [
-        { label: "Read Notes", action: "modal" },
-      ],
+      links: [{ label: "Read Notes" }],
     },
   ],
 
-  // Short broadcast-style updates ("From the Bench")
+  // Workbench updates ("From the Bench")
   updates: [
     {
       date: "Nov 25, 2026",
@@ -198,12 +161,5 @@ window.SITE_CONTENT = {
       title: "Adding real screenshots, demos, and family gallery links",
       body: "Next up: dropping screenshots into the showcase cards and adding direct links to live demos and shared media.",
     },
-  ],
-
-  // Quick links shown in the About section (edit or add external links anytime)
-  links: [
-    { label: "Browse Builds", href: "#work", note: "Jump to the project grid" },
-    { label: "Latest Updates", href: "#updates", note: "See recent workshop notes" },
-    { label: "Back to Top", href: "#top", note: "Return to the studio spotlight" },
   ],
 };

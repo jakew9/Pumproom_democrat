@@ -26,7 +26,6 @@
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
-  <!-- Subtle ambient studio lighting -->
   <div class="studio-backdrop" aria-hidden="true">
     <div class="glow glow-amber"></div>
     <div class="glow glow-cyan"></div>
@@ -49,7 +48,6 @@
       <nav class="nav-links" aria-label="Primary Navigation">
         <a href="#work">What I'm Making</a>
         <a href="#updates">From the Bench</a>
-        <a href="#about">About</a>
       </nav>
 
       <a href="#work" class="btn btn-sm btn-outline nav-cta">Explore Builds</a>
@@ -57,15 +55,15 @@
   </header>
 
   <main id="top">
-    <!-- Apple-Style Sticky Hero & Scroll-Scrubbed Bench Runway -->
-    <section class="hero-runway" id="hero-runway" aria-label="Studio Hero and Active Bench Showcase">
-      <div class="hero-sticky-stage" id="hero-sticky-stage" data-bench-stage="01">
+    <!-- Sticky Stage + Scroll-Scrubbed Hero & NOW ON THE BENCH -->
+    <section class="hero-runway" id="hero-runway" aria-label="The Pump Room Hero and Active Bench">
+      <div class="hero-sticky-stage" id="hero-sticky-stage">
         <div class="container stage-inner">
           <div class="hero-grid" id="hero-grid">
             <div class="hero-copy" id="hero-copy">
               <div class="status-pill">
                 <span class="pulse-dot" aria-hidden="true"></span>
-                <span id="hero-status">STUDIO ONLINE • BUILDING NEW THINGS</span>
+                <span id="hero-status">STUDIO ONLINE · BUILDING NEW THINGS</span>
               </div>
 
               <h1 class="hero-title" id="hero-title">
@@ -86,15 +84,8 @@
               </div>
             </div>
 
-            <!-- Studio Monitor Spotlight Stage -->
-            <aside
-              class="studio-monitor"
-              id="studio-monitor"
-              data-visual-mode="eq"
-              aria-label="Featured Project Spotlight"
-            >
-              <div class="monitor-glow" aria-hidden="true"></div>
-
+            <!-- NOW ON THE BENCH Stage -->
+            <aside class="studio-monitor" id="studio-monitor" aria-label="Now on the Bench">
               <div class="monitor-bar">
                 <div class="monitor-lights" aria-hidden="true">
                   <span></span><span></span><span></span>
@@ -109,15 +100,14 @@
                     <span></span><span></span><span></span><span></span>
                     <span></span><span></span><span></span><span></span>
                   </div>
-                  <div class="signal-rings">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div class="edge-grid-preview"></div>
                   <div class="scanline"></div>
                 </div>
 
                 <div class="monitor-body">
-                  <p class="monitor-kicker" id="featured-subtitle">Active Build • v1.0</p>
+                  <div class="monitor-heading-row">
+                    <p class="monitor-kicker" id="featured-subtitle">Active Build · v1.0</p>
+                    <span class="stage-counter" id="stage-progress-counter">01 / 03</span>
+                  </div>
                   <h2 class="monitor-title" id="featured-title">Home Media &amp; App Lab</h2>
                   <p class="monitor-summary" id="featured-summary">
                     Building custom living-room media experiences, retro channel apps, and small tools
@@ -130,53 +120,35 @@
                     Inspect Spotlight Build
                   </button>
                 </div>
+
+                <div class="bench-progress-track" aria-hidden="true">
+                  <div class="bench-progress-fill"></div>
+                </div>
               </div>
             </aside>
           </div>
-
-          <!-- Scroll-Scrub Timeline Deck -->
-          <div class="stage-scrubber" aria-label="Bench stage progress">
-            <div class="scrubber-top">
-              <div class="scrub-steps" id="bench-step-tabs" role="group" aria-label="Bench chapters"></div>
-              <div class="scrubber-meta">
-                <span class="stage-caption" id="stage-caption">
-                  Phase 01 — Designing calm, clutter-free living-room apps.
-                </span>
-                <span class="stage-counter" id="stage-progress-counter">01 / 03</span>
-              </div>
-            </div>
-            <div class="scrubber-track" aria-hidden="true">
-              <div class="scrubber-fill"></div>
-            </div>
-          </div>
-
-          <div class="scroll-cue" aria-hidden="true">
-            <span>Scroll to explore the bench</span>
-            <span class="scroll-cue-arrow">↓</span>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Showcase / Projects Section -->
+    <!-- Minimal Workbench Showcase List -->
     <section id="work" class="section">
       <div class="container">
-        <div class="section-header reveal-item" data-reveal="up">
+        <div class="section-header reveal-item" data-reveal>
           <div>
-            <p class="section-kicker">SHOWCASE</p>
+            <p class="section-kicker">ON THE WORKBENCH</p>
             <h2 class="section-title">What I'm Making</h2>
           </div>
-          <div class="filter-bar" id="category-filters" role="tablist" aria-label="Filter projects by category"></div>
         </div>
 
-        <div class="projects-grid" id="projects-grid" aria-live="polite"></div>
+        <div class="projects-grid" id="projects-grid"></div>
       </div>
     </section>
 
-    <!-- Studio Updates / Broadcast Log -->
+    <!-- Minimal Bench Updates List -->
     <section id="updates" class="section section-alt">
       <div class="container">
-        <div class="section-header reveal-item" data-reveal="up">
+        <div class="section-header reveal-item" data-reveal>
           <div>
             <p class="section-kicker">DISPATCHES</p>
             <h2 class="section-title">From the Bench</h2>
@@ -187,28 +159,8 @@
         <div class="updates-list" id="updates-list"></div>
       </div>
     </section>
-
-    <!-- About & Connect Section -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="about-panel reveal-item" data-reveal="card">
-          <div class="about-copy">
-            <p class="section-kicker">ABOUT THE SITE</p>
-            <h2 class="section-title" id="about-heading">What happens in the Pump Room?</h2>
-            <p class="about-text" id="about-copy"></p>
-            <div class="about-meta">
-              <span class="meta-chip" id="about-domain-chip">pumproom.democrat</span>
-              <span class="meta-chip" id="about-host-chip">Static Edge Site</span>
-            </div>
-          </div>
-
-          <div class="about-links" id="about-links"></div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -221,7 +173,7 @@
     </div>
   </footer>
 
-  <!-- Project Detail Modal -->
+  <!-- Existing Build Details Modal -->
   <div class="modal-backdrop" id="project-modal" hidden>
     <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-header">
@@ -248,6 +200,6 @@
   </div>
 
   <script src="./content.js"></script>
-  <script type="module" src="./app.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
