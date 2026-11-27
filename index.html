@@ -63,7 +63,7 @@
                 <stop offset="100%" stop-color="#111115" />
               </linearGradient>
 
-              <!-- Multi-stage optical bloom so PUMP looks inflated and blindingly solid white -->
+              <!-- Multi-stage optical bloom for bright white halo around black PUMP letters -->
               <filter
                 id="pump-bloom"
                 x="-60%"
@@ -72,16 +72,17 @@
                 height="290%"
                 color-interpolation-filters="sRGB"
               >
-                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur-tight" />
-                <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur-mid" />
-                <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="blur-wide" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur-tight" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur-mid" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="24" result="blur-wide" />
                 <feGaussianBlur in="SourceGraphic" stdDeviation="48" result="blur-halo" />
                 <feComponentTransfer in="blur-halo" result="blur-halo-soft">
-                  <feFuncA type="linear" slope="0.5" />
+                  <feFuncA type="linear" slope="0.6" />
                 </feComponentTransfer>
                 <feMerge>
                   <feMergeNode in="blur-halo-soft" />
                   <feMergeNode in="blur-wide" />
+                  <feMergeNode in="blur-mid" />
                   <feMergeNode in="blur-mid" />
                   <feMergeNode in="blur-tight" />
                   <feMergeNode in="SourceGraphic" />
