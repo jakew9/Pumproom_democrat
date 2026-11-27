@@ -6,7 +6,7 @@
   <title>The Pump Room — pumproom.democrat</title>
   <meta
     name="description"
-    content="Welcome to pumproom.democrat — a dark-mode studio hub for family, friends, and visitors to see the apps, media, and projects I'm building."
+    content="Welcome to The Pump Room (pumproom.democrat) — apps, media projects, and experiments off the workbench."
   />
   <meta property="og:title" content="The Pump Room — pumproom.democrat" />
   <meta
@@ -15,191 +15,128 @@
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://pumproom.democrat" />
-  <meta name="theme-color" content="#080a0f" />
+  <meta name="theme-color" content="#000000" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=JetBrains+Mono:wght@500&family=Tilt+Neon&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./neon.css" />
 </head>
 <body>
-  <div class="studio-backdrop" aria-hidden="true">
-    <div class="glow glow-amber"></div>
-    <div class="glow glow-cyan"></div>
-    <div class="grid-overlay"></div>
-  </div>
+  <main
+    class="neon-hero"
+    id="neon-hero"
+    data-power="off"
+    data-the="off"
+    data-pump="off"
+    data-room="off"
+  >
+    <h1 class="sr-only">The Pump Room</h1>
 
-  <!-- Top Navigation -->
-  <header class="site-header">
-    <div class="container nav-inner">
-      <a href="#top" class="brand-lockup" aria-label="The Pump Room Home">
-        <span class="brand-mark" aria-hidden="true">
-          <span class="live-dot"></span>
-        </span>
-        <span class="brand-text">
-          <span class="brand-name" id="nav-brand-name">The Pump Room</span>
-          <span class="brand-domain" id="nav-brand-domain">pumproom.democrat</span>
-        </span>
+    <div class="sign-stage">
+      <div class="neon-lockup" aria-hidden="true">
+        <div class="lockup-core">
+          <span class="neon-word word-the">THE</span>
+
+          <svg
+            class="word-pump-svg"
+            viewBox="0 0 680 210"
+            role="presentation"
+            focusable="false"
+            overflow="visible"
+          >
+            <defs>
+              <!-- Soft pillowy interior fill when PUMP is lit -->
+              <linearGradient id="pump-lit-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="52%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#eef5ff" />
+              </linearGradient>
+
+              <!-- Unlit dark-glass interior gradient -->
+              <linearGradient id="pump-unlit-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1e1e24" />
+                <stop offset="48%" stop-color="#16161a" />
+                <stop offset="100%" stop-color="#111115" />
+              </linearGradient>
+
+              <!-- Multi-stage optical bloom so PUMP looks inflated and blindingly solid white -->
+              <filter
+                id="pump-bloom"
+                x="-60%"
+                y="-95%"
+                width="220%"
+                height="290%"
+                color-interpolation-filters="sRGB"
+              >
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="blur-tight" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur-mid" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="25" result="blur-wide" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="48" result="blur-halo" />
+                <feComponentTransfer in="blur-halo" result="blur-halo-soft">
+                  <feFuncA type="linear" slope="0.5" />
+                </feComponentTransfer>
+                <feMerge>
+                  <feMergeNode in="blur-halo-soft" />
+                  <feMergeNode in="blur-wide" />
+                  <feMergeNode in="blur-mid" />
+                  <feMergeNode in="blur-tight" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Glowing pillowy bloom pass (visible when PUMP is powered on) -->
+            <text
+              class="pump-text pump-bloom-layer"
+              x="340"
+              y="174"
+              text-anchor="middle"
+              filter="url(#pump-bloom)"
+            >PUMP</text>
+
+            <!-- Solid rounded body layer (dark-glass unlit -> blinding white inflated lit) -->
+            <text
+              class="pump-text pump-body-layer"
+              x="340"
+              y="174"
+              text-anchor="middle"
+            >PUMP</text>
+          </svg>
+
+          <span class="neon-word word-room">RO<span class="room-o2">O</span>M</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-controls">
+      <a href="./studio.html" class="enter-link" id="enter-link">
+        <span>ENTER</span>
+        <span class="enter-arrow" aria-hidden="true">→</span>
       </a>
 
-      <nav class="nav-links" aria-label="Primary Navigation">
-        <a href="#work">What I'm Making</a>
-        <a href="#updates">From the Bench</a>
-      </nav>
-
-      <a href="#work" class="btn btn-sm btn-outline nav-cta">Explore Builds</a>
+      <button
+        type="button"
+        class="power-switch"
+        id="power-switch"
+        role="switch"
+        aria-checked="false"
+        aria-label="Toggle neon sign power"
+      >
+        <span class="switch-housing" aria-hidden="true">
+          <span class="switch-led"></span>
+          <span class="switch-slot">
+            <span class="switch-lever"></span>
+          </span>
+        </span>
+        <span class="switch-caption" id="switch-caption">OFF</span>
+      </button>
     </div>
-  </header>
-
-  <main id="top">
-    <!-- Sticky Stage + Scroll-Scrubbed Hero & NOW ON THE BENCH -->
-    <section class="hero-runway" id="hero-runway" aria-label="The Pump Room Hero and Active Bench">
-      <div class="hero-sticky-stage" id="hero-sticky-stage">
-        <div class="container stage-inner">
-          <div class="hero-grid" id="hero-grid">
-            <div class="hero-copy" id="hero-copy">
-              <div class="status-pill">
-                <span class="pulse-dot" aria-hidden="true"></span>
-                <span id="hero-status">STUDIO ONLINE · BUILDING NEW THINGS</span>
-              </div>
-
-              <h1 class="hero-title" id="hero-title">
-                Things I’m building, testing, and sharing.
-              </h1>
-
-              <p class="hero-description" id="hero-description">
-                Welcome to pumproom.democrat — a home base for family, friends, and curious visitors
-                to check out the apps, media projects, and weekend experiments coming off the workbench.
-              </p>
-
-              <div class="hero-actions">
-                <a href="#work" class="btn btn-primary">
-                  <span>See What's on the Bench</span>
-                  <span aria-hidden="true">→</span>
-                </a>
-                <a href="#updates" class="btn btn-ghost">Latest Updates</a>
-              </div>
-            </div>
-
-            <!-- NOW ON THE BENCH Stage -->
-            <aside class="studio-monitor" id="studio-monitor" aria-label="Now on the Bench">
-              <div class="monitor-bar">
-                <div class="monitor-lights" aria-hidden="true">
-                  <span></span><span></span><span></span>
-                </div>
-                <span class="monitor-badge" id="featured-badge">NOW ON THE BENCH</span>
-              </div>
-
-              <div class="monitor-screen">
-                <div class="screen-visual" aria-hidden="true">
-                  <div class="eq-bars">
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                  </div>
-                  <div class="scanline"></div>
-                </div>
-
-                <div class="monitor-body">
-                  <div class="monitor-heading-row">
-                    <p class="monitor-kicker" id="featured-subtitle">Active Build · v1.0</p>
-                    <span class="stage-counter" id="stage-progress-counter">01 / 03</span>
-                  </div>
-                  <h2 class="monitor-title" id="featured-title">Home Media &amp; App Lab</h2>
-                  <p class="monitor-summary" id="featured-summary">
-                    Building custom living-room media experiences, retro channel apps, and small tools
-                    that make everyday tech more fun for the whole family.
-                  </p>
-
-                  <dl class="monitor-metrics" id="featured-metrics"></dl>
-
-                  <button type="button" class="btn btn-secondary btn-full" id="featured-open-btn">
-                    Inspect Spotlight Build
-                  </button>
-                </div>
-
-                <div class="bench-progress-track" aria-hidden="true">
-                  <div class="bench-progress-fill"></div>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Minimal Workbench Showcase List -->
-    <section id="work" class="section">
-      <div class="container">
-        <div class="section-header reveal-item" data-reveal>
-          <div>
-            <p class="section-kicker">ON THE WORKBENCH</p>
-            <h2 class="section-title">What I'm Making</h2>
-          </div>
-        </div>
-
-        <div class="projects-grid" id="projects-grid"></div>
-      </div>
-    </section>
-
-    <!-- Minimal Bench Updates List -->
-    <section id="updates" class="section section-alt">
-      <div class="container">
-        <div class="section-header reveal-item" data-reveal>
-          <div>
-            <p class="section-kicker">DISPATCHES</p>
-            <h2 class="section-title">From the Bench</h2>
-          </div>
-          <p class="section-subcopy">Quick notes for family &amp; friends on what's new.</p>
-        </div>
-
-        <div class="updates-list" id="updates-list"></div>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="live-dot live-dot-sm" aria-hidden="true"></span>
-        <span><strong id="footer-brand">The Pump Room</strong> · <span id="footer-domain">pumproom.democrat</span></span>
-      </div>
-      <p class="footer-note">
-        © <span id="current-year">2026</span> · Built as a home base for projects &amp; family.
-      </p>
-    </div>
-  </footer>
-
-  <!-- Existing Build Details Modal -->
-  <div class="modal-backdrop" id="project-modal" hidden>
-    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-header">
-        <div>
-          <span class="modal-category" id="modal-category"></span>
-          <h3 class="modal-title" id="modal-title"></h3>
-        </div>
-        <button type="button" class="modal-close" id="modal-close" aria-label="Close details">
-          ✕
-        </button>
-      </div>
-      <div class="modal-visual" id="modal-visual"></div>
-      <div class="modal-body">
-        <div class="modal-meta-row">
-          <span class="status-badge" id="modal-status"></span>
-          <span class="modal-date" id="modal-date"></span>
-        </div>
-        <p class="modal-summary" id="modal-summary"></p>
-        <p class="modal-details" id="modal-details"></p>
-        <div class="tag-row" id="modal-tags"></div>
-        <div class="modal-actions" id="modal-actions"></div>
-      </div>
-    </div>
-  </div>
-
-  <script src="./content.js"></script>
-  <script src="./app.js"></script>
+  <script src="./neon.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,614 @@
+/* ==========================================================================
+   THE PUMP ROOM — Full-Viewport Pitch-Black Neon Sign Hero
+   ========================================================================== */
+
+:root {
+  --canvas: #000000;
+  --glass-unlit: #16161a;
+  --glass-rim: rgba(255, 255, 255, 0.045);
+
+  --neon-green: #00ff66;
+  --neon-green-core: #eafff0;
+  --neon-red: #ff1e1e;
+  --neon-red-core: #ffecec;
+  --neon-white: #ffffff;
+
+  --pump-size: clamp(5.5rem, 20vw, 17rem);
+
+  --font-pump: "Fredoka", "Arial Rounded MT Bold", "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-tube: "Tilt Neon", ui-rounded, system-ui, sans-serif;
+  --font-ui: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+  background-color: var(--canvas);
+  color: var(--neon-white);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Stage & Tilted Sign Lockup (-14deg)
+   ========================================================================== */
+
+.neon-hero {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  background-color: var(--canvas);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-items: center;
+  padding: 1.5rem 1rem max(1.6rem, env(safe-area-inset-bottom));
+  transition: opacity 0.22s ease;
+}
+
+.neon-hero.is-leaving {
+  opacity: 0;
+}
+
+.sign-stage {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding-top: 2vh;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.neon-lockup {
+  position: relative;
+  font-size: var(--pump-size);
+  line-height: 1;
+  transform: rotate(-14deg);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.lockup-core {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+/* ==========================================================================
+   PUMP — Pillowy, Solid Blinding White Inflated Typography (Inline SVG)
+   ========================================================================== */
+
+.word-pump-svg {
+  display: block;
+  width: 3.65em;
+  height: auto;
+  overflow: visible;
+}
+
+.pump-text {
+  font-family: var(--font-pump);
+  font-weight: 700;
+  font-size: 200px;
+  letter-spacing: -4px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  paint-order: stroke fill;
+}
+
+/* Unlit dark-glass state */
+.pump-bloom-layer {
+  fill: var(--neon-white);
+  stroke: var(--neon-white);
+  stroke-width: 26px;
+  opacity: 0;
+  transition: opacity 0.08s ease-out;
+}
+
+.pump-body-layer {
+  fill: url(#pump-unlit-grad);
+  stroke: var(--glass-unlit);
+  stroke-width: 24px;
+  transition: opacity 0.1s ease-out;
+}
+
+/* Lit blinding-white pillowy surge state */
+.neon-hero[data-pump="lit"] .pump-bloom-layer {
+  opacity: 1;
+  animation: pump-bloom-surge 0.34s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.neon-hero[data-pump="lit"] .pump-body-layer {
+  fill: url(#pump-lit-grad);
+  stroke: var(--neon-white);
+  stroke-width: 23px;
+  animation: pump-body-surge 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.neon-hero[data-pump="lit"] .word-pump-svg {
+  filter: drop-shadow(0 0 0.09em rgba(255, 255, 255, 0.72))
+    drop-shadow(0 0 0.24em rgba(255, 255, 255, 0.38));
+  animation: pump-halo-surge 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pump-bloom-surge {
+  0% {
+    opacity: 0;
+  }
+  28% {
+    opacity: 0.62;
+  }
+  65%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pump-halo-surge {
+  0% {
+    filter: brightness(0.75) drop-shadow(0 0 0.03em rgba(255, 255, 255, 0.35));
+  }
+  52% {
+    filter: brightness(1.16)
+      drop-shadow(0 0 0.14em rgba(255, 255, 255, 0.92))
+      drop-shadow(0 0 0.34em rgba(255, 255, 255, 0.56));
+  }
+  100% {
+    filter: brightness(1)
+      drop-shadow(0 0 0.09em rgba(255, 255, 255, 0.72))
+      drop-shadow(0 0 0.24em rgba(255, 255, 255, 0.38));
+  }
+}
+
+@keyframes pump-body-surge {
+  0% {
+    opacity: 0.45;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   THE (Green Neon) & ROOM (Red Neon) — Single-Stroke Glass Tube Typography
+   ========================================================================== */
+
+.neon-word {
+  position: absolute;
+  font-family: var(--font-tube);
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--glass-unlit);
+  text-shadow:
+    0 1px 0 var(--glass-rim),
+    0 0 2px rgba(22, 22, 26, 0.9);
+  transition: color 0.05s ease-out, text-shadow 0.05s ease-out;
+}
+
+/* THE — tucked tight above P and U of PUMP */
+.word-the {
+  font-size: 0.34em;
+  letter-spacing: 0.13em;
+  left: 4.5%;
+  bottom: calc(100% - 0.14em);
+  z-index: 2;
+}
+
+.neon-hero[data-the="lit"] .word-the {
+  color: var(--neon-green-core);
+  text-shadow:
+    0 0 0.03em var(--neon-green-core),
+    0 0 0.09em #8affb8,
+    0 0 0.22em var(--neon-green),
+    0 0 0.44em rgba(0, 255, 102, 0.88),
+    0 0 0.82em rgba(0, 255, 102, 0.46),
+    0 0 1.35em rgba(0, 255, 102, 0.22);
+  animation: green-snap 0.14s ease-out forwards;
+}
+
+@keyframes green-snap {
+  0% {
+    opacity: 0.2;
+  }
+  45% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0.86;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ROOM — tucked tight underneath U, M, and P of PUMP */
+.word-room {
+  font-size: 0.36em;
+  letter-spacing: 0.15em;
+  right: 4%;
+  top: calc(100% - 0.14em);
+  z-index: 2;
+}
+
+.room-o2 {
+  display: inline-block;
+  color: inherit;
+  text-shadow: inherit;
+}
+
+/* ROOM ignition sputter before steady state */
+.neon-hero[data-room="igniting"] .word-room {
+  color: var(--neon-red-core);
+  text-shadow:
+    0 0 0.03em var(--neon-red-core),
+    0 0 0.09em #ff7d7d,
+    0 0 0.22em var(--neon-red),
+    0 0 0.44em rgba(255, 30, 30, 0.88),
+    0 0 0.82em rgba(255, 30, 30, 0.46),
+    0 0 1.35em rgba(255, 30, 30, 0.22);
+  animation: room-ignite-sputter 0.38s steps(1, end) forwards;
+}
+
+@keyframes room-ignite-sputter {
+  0% {
+    color: var(--glass-unlit);
+    text-shadow: 0 1px 0 var(--glass-rim);
+  }
+  18% {
+    color: var(--neon-red-core);
+    text-shadow:
+      0 0 0.03em var(--neon-red-core),
+      0 0 0.18em var(--neon-red),
+      0 0 0.42em rgba(255, 30, 30, 0.82);
+  }
+  34% {
+    color: var(--glass-unlit);
+    text-shadow: 0 1px 0 var(--glass-rim);
+  }
+  52% {
+    color: #ffb8b8;
+    text-shadow:
+      0 0 0.08em var(--neon-red),
+      0 0 0.26em rgba(255, 30, 30, 0.65);
+  }
+  66% {
+    color: var(--glass-unlit);
+    text-shadow: 0 1px 0 var(--glass-rim);
+  }
+  78%,
+  100% {
+    color: var(--neon-red-core);
+    text-shadow:
+      0 0 0.03em var(--neon-red-core),
+      0 0 0.09em #ff7d7d,
+      0 0 0.22em var(--neon-red),
+      0 0 0.44em rgba(255, 30, 30, 0.88),
+      0 0 0.82em rgba(255, 30, 30, 0.46),
+      0 0 1.35em rgba(255, 30, 30, 0.22);
+  }
+}
+
+/* ROOM steady lit state + realistic failing-ballast dropout on second O */
+.neon-hero[data-room="lit"] .word-room {
+  color: var(--neon-red-core);
+  text-shadow:
+    0 0 0.03em var(--neon-red-core),
+    0 0 0.09em #ff7d7d,
+    0 0 0.22em var(--neon-red),
+    0 0 0.44em rgba(255, 30, 30, 0.88),
+    0 0 0.82em rgba(255, 30, 30, 0.46),
+    0 0 1.35em rgba(255, 30, 30, 0.22);
+}
+
+.neon-hero[data-room="lit"] .room-o2 {
+  animation: room-o2-ballast 7.8s linear infinite;
+  will-change: opacity;
+}
+
+@keyframes room-o2-ballast {
+  0%,
+  39%,
+  47.5%,
+  77.5%,
+  82.5%,
+  91.5%,
+  95.5%,
+  100% {
+    color: var(--neon-red-core);
+    text-shadow:
+      0 0 0.03em var(--neon-red-core),
+      0 0 0.09em #ff7d7d,
+      0 0 0.22em var(--neon-red),
+      0 0 0.44em rgba(255, 30, 30, 0.88),
+      0 0 0.82em rgba(255, 30, 30, 0.46),
+      0 0 1.35em rgba(255, 30, 30, 0.22);
+  }
+
+  /* Irregular double-blink ballast dropout */
+  40%,
+  41.6% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  42.6%,
+  43.6% {
+    color: #ff9c9c;
+    text-shadow:
+      0 0 0.06em var(--neon-red),
+      0 0 0.22em rgba(255, 30, 30, 0.55);
+  }
+
+  44.4%,
+  46.4% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  /* Isolated crisp blackout dip */
+  78.5%,
+  80.2% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  80.9%,
+  81.6% {
+    color: #962828;
+    text-shadow:
+      0 0 0.08em rgba(255, 30, 30, 0.4);
+  }
+
+  /* Subtle voltage sag without full blackout */
+  92.6%,
+  94.4% {
+    color: #ff8e8e;
+    text-shadow:
+      0 0 0.08em rgba(255, 30, 30, 0.65),
+      0 0 0.28em rgba(255, 30, 30, 0.32);
+  }
+}
+
+/* ==========================================================================
+   Bottom-Center Controls: ENTER CTA + Minimal Physical Toggle Switch
+   ========================================================================== */
+
+.hero-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  z-index: 10;
+}
+
+.enter-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.58rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-ui);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  color: rgba(255, 255, 255, 0.48);
+  text-decoration: none;
+  transition:
+    color 0.24s ease,
+    border-color 0.24s ease,
+    background-color 0.24s ease,
+    box-shadow 0.24s ease,
+    transform 0.2s ease;
+}
+
+.neon-hero[data-power="on"] .enter-link {
+  color: rgba(255, 255, 255, 0.82);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.enter-link:hover,
+.enter-link:focus-visible {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.enter-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 3px;
+}
+
+.enter-arrow {
+  display: inline-block;
+  letter-spacing: 0;
+  text-indent: 0;
+  transition: transform 0.2s ease;
+}
+
+.enter-link:hover .enter-arrow,
+.enter-link:focus-visible .enter-arrow {
+  transform: translateX(3px);
+}
+
+/* Minimal Physical Toggle Switch */
+.power-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.35rem 0.65rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.power-switch:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.65);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+.switch-housing {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 34px;
+  height: 52px;
+  border-radius: 9px;
+  background: linear-gradient(180deg, #17171d 0%, #0b0b0e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+    0 6px 18px rgba(0, 0, 0, 0.85);
+}
+
+.switch-led {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #23232b;
+  transition: background-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.power-switch[aria-checked="true"] .switch-led {
+  background: var(--neon-green);
+  box-shadow:
+    0 0 5px var(--neon-green),
+    0 0 11px rgba(0, 255, 102, 0.65);
+}
+
+.switch-slot {
+  position: relative;
+  width: 14px;
+  height: 28px;
+  border-radius: 7px;
+  background: #050507;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.95);
+}
+
+.switch-lever {
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 2px;
+  height: 13px;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #4b4b57 0%, #26262f 55%, #191920 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 4px rgba(0, 0, 0, 0.85);
+  transform: translateY(10px);
+  transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1), background 0.16s ease;
+}
+
+.power-switch[aria-checked="true"] .switch-lever {
+  transform: translateY(0);
+  background: linear-gradient(180deg, #747484 0%, #3a3a46 55%, #23232c 100%);
+}
+
+.switch-caption {
+  min-width: 2.2em;
+  text-align: left;
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: #4f4f5c;
+  transition: color 0.18s ease;
+}
+
+.power-switch[aria-checked="true"] .switch-caption {
+  color: #9e9eae;
+}
+
+/* ==========================================================================
+   Responsive Safeguards
+   ========================================================================== */
+
+@media (max-width: 460px) {
+  :root {
+    --pump-size: clamp(4.2rem, 21vw, 5.5rem);
+  }
+}
+
+@media (max-height: 540px) {
+  :root {
+    --pump-size: clamp(3.6rem, 15vh, 6.5rem);
+  }
+
+  .hero-controls {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Preference
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-hero,
+  .pump-bloom-layer,
+  .pump-body-layer,
+  .neon-word,
+  .enter-link,
+  .enter-arrow,
+  .switch-lever,
+  .switch-led {
+    transition: none !important;
+  }
+
+  .neon-hero[data-pump="lit"] .word-pump-svg,
+  .neon-hero[data-pump="lit"] .pump-bloom-layer,
+  .neon-hero[data-pump="lit"] .pump-body-layer,
+  .neon-hero[data-the="lit"] .word-the,
+  .neon-hero[data-room="igniting"] .word-room,
+  .neon-hero[data-room="lit"] .room-o2 {
+    animation: none !important;
+  }
+}
