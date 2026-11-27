@@ -314,7 +314,7 @@ body {
   }
 }
 
-/* ROOM steady lit state + realistic failing-ballast dropout on second O */
+/* ROOM steady lit state + heavy failing-ballast flicker across ROOM and second O */
 .neon-hero[data-room="lit"] .word-room {
   color: var(--neon-red-core);
   text-shadow:
@@ -324,21 +324,25 @@ body {
     0 0 0.44em rgba(255, 30, 30, 0.88),
     0 0 0.82em rgba(255, 30, 30, 0.46),
     0 0 1.35em rgba(255, 30, 30, 0.22);
-}
-
-.neon-hero[data-room="lit"] .room-o2 {
-  animation: room-o2-ballast 7.8s linear infinite;
+  animation: room-word-flicker 4.3s linear infinite;
   will-change: opacity;
 }
 
-@keyframes room-o2-ballast {
+.neon-hero[data-room="lit"] .room-o2 {
+  animation: room-o2-ballast 2.9s linear infinite;
+  will-change: opacity;
+}
+
+@keyframes room-word-flicker {
   0%,
-  39%,
-  47.5%,
-  77.5%,
-  82.5%,
-  91.5%,
-  95.5%,
+  16%,
+  21%,
+  44%,
+  51%,
+  69%,
+  75%,
+  89%,
+  95%,
   100% {
     color: var(--neon-red-core);
     text-shadow:
@@ -350,54 +354,181 @@ body {
       0 0 1.35em rgba(255, 30, 30, 0.22);
   }
 
-  /* Irregular double-blink ballast dropout */
-  40%,
-  41.6% {
+  /* Quick buzz dip */
+  17%,
+  18.4% {
+    color: #c84242;
+    text-shadow:
+      0 0 0.08em rgba(255, 30, 30, 0.55),
+      0 0 0.26em rgba(255, 30, 30, 0.28);
+  }
+
+  19.2%,
+  20.2% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  42.6%,
-  43.6% {
+  /* Full-word sputter blackout */
+  45%,
+  46.8% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  47.5%,
+  48.4% {
     color: #ff9c9c;
     text-shadow:
-      0 0 0.06em var(--neon-red),
-      0 0 0.22em rgba(255, 30, 30, 0.55);
+      0 0 0.1em var(--neon-red),
+      0 0 0.34em rgba(255, 30, 30, 0.65);
   }
 
-  44.4%,
-  46.4% {
+  49%,
+  50.2% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Isolated crisp blackout dip */
-  78.5%,
-  80.2% {
+  /* Voltage sag stutter */
+  70.2%,
+  72% {
+    color: #a82e2e;
+    text-shadow:
+      0 0 0.08em rgba(255, 30, 30, 0.42),
+      0 0 0.22em rgba(255, 30, 30, 0.2);
+  }
+
+  72.8%,
+  74% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  80.9%,
-  81.6% {
-    color: #962828;
+  /* Rapid end-of-cycle double drop */
+  90%,
+  91.4% {
+    color: var(--glass-unlit);
     text-shadow:
-      0 0 0.08em rgba(255, 30, 30, 0.4);
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Subtle voltage sag without full blackout */
-  92.6%,
-  94.4% {
+  92.2%,
+  93.2% {
     color: #ff8e8e;
     text-shadow:
+      0 0 0.1em rgba(255, 30, 30, 0.6),
+      0 0 0.28em rgba(255, 30, 30, 0.3);
+  }
+
+  93.8%,
+  94.4% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+}
+
+@keyframes room-o2-ballast {
+  0%,
+  12%,
+  24%,
+  46%,
+  58%,
+  76%,
+  88%,
+  100% {
+    color: var(--neon-red-core);
+    text-shadow:
+      0 0 0.03em var(--neon-red-core),
+      0 0 0.09em #ff7d7d,
+      0 0 0.22em var(--neon-red),
+      0 0 0.44em rgba(255, 30, 30, 0.88),
+      0 0 0.82em rgba(255, 30, 30, 0.46),
+      0 0 1.35em rgba(255, 30, 30, 0.22);
+  }
+
+  /* Rapid multi-sputter dropout */
+  13%,
+  16.5% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  17.5%,
+  19.2% {
+    color: #ff8f8f;
+    text-shadow:
+      0 0 0.08em var(--neon-red),
+      0 0 0.26em rgba(255, 30, 30, 0.55);
+  }
+
+  20%,
+  23% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  /* Heavy dead-tube stretch with arc flash */
+  47.5%,
+  51.5% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  52.5%,
+  53.8% {
+    color: #a12929;
+    text-shadow: 0 0 0.08em rgba(255, 30, 30, 0.38);
+  }
+
+  54.6%,
+  57% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  /* Fast stutter burst */
+  77%,
+  79.5% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  80.5%,
+  82% {
+    color: #ff9c9c;
+    text-shadow:
       0 0 0.08em rgba(255, 30, 30, 0.65),
-      0 0 0.28em rgba(255, 30, 30, 0.32);
+      0 0 0.28em rgba(255, 30, 30, 0.35);
+  }
+
+  83%,
+  87% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
   }
 }
 
@@ -607,6 +738,7 @@ body {
   .neon-hero[data-pump="lit"] .pump-body-layer,
   .neon-hero[data-the="lit"] .word-the,
   .neon-hero[data-room="igniting"] .word-room,
+  .neon-hero[data-room="lit"] .word-room,
   .neon-hero[data-room="lit"] .room-o2 {
     animation: none !important;
   }
