@@ -112,8 +112,8 @@ body {
 .pump-text {
   font-family: var(--font-pump);
   font-weight: 700;
-  font-size: 200px;
-  letter-spacing: -4px;
+  font-size: 196px;
+  letter-spacing: 3px;
   stroke-linejoin: round;
   stroke-linecap: round;
   paint-order: stroke fill;
@@ -123,15 +123,15 @@ body {
 .pump-bloom-layer {
   fill: var(--neon-white);
   stroke: var(--neon-white);
-  stroke-width: 26px;
+  stroke-width: 24px;
   opacity: 0;
   transition: opacity 0.08s ease-out;
 }
 
 .pump-body-layer {
   fill: url(#pump-unlit-grad);
-  stroke: var(--glass-unlit);
-  stroke-width: 24px;
+  stroke: #000000;
+  stroke-width: 16px;
   transition: opacity 0.1s ease-out;
 }
 
@@ -143,8 +143,8 @@ body {
 
 .neon-hero[data-pump="lit"] .pump-body-layer {
   fill: url(#pump-lit-grad);
-  stroke: var(--neon-white);
-  stroke-width: 23px;
+  stroke: #000000;
+  stroke-width: 16px;
   animation: pump-body-surge 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
