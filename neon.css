@@ -314,7 +314,7 @@ body {
   }
 }
 
-/* ROOM steady lit state + heavy failing-ballast flicker across ROOM and second O */
+/* ROOM steady lit state + fast (~0.5s) failing-ballast flicker across ROOM and second O */
 .neon-hero[data-room="lit"] .word-room {
   color: var(--neon-red-core);
   text-shadow:
@@ -324,25 +324,25 @@ body {
     0 0 0.44em rgba(255, 30, 30, 0.88),
     0 0 0.82em rgba(255, 30, 30, 0.46),
     0 0 1.35em rgba(255, 30, 30, 0.22);
-  animation: room-word-flicker 4.3s linear infinite;
+  animation: room-word-flicker 2.1s linear infinite;
   will-change: opacity;
 }
 
 .neon-hero[data-room="lit"] .room-o2 {
-  animation: room-o2-ballast 2.9s linear infinite;
+  animation: room-o2-ballast 1.55s linear infinite;
   will-change: opacity;
 }
 
 @keyframes room-word-flicker {
   0%,
-  16%,
+  12%,
   21%,
-  44%,
-  51%,
-  69%,
-  75%,
-  89%,
-  95%,
+  39%,
+  50%,
+  67%,
+  76%,
+  90%,
+  97%,
   100% {
     color: var(--neon-red-core);
     text-shadow:
@@ -354,84 +354,68 @@ body {
       0 0 1.35em rgba(255, 30, 30, 0.22);
   }
 
-  /* Quick buzz dip */
-  17%,
-  18.4% {
+  /* ~0.3s: crisp buzz blackout */
+  14%,
+  17% {
+    color: var(--glass-unlit);
+    text-shadow:
+      0 1px 0 var(--glass-rim),
+      0 0 2px rgba(22, 22, 26, 0.9);
+  }
+
+  18%,
+  19.5% {
     color: #c84242;
     text-shadow:
-      0 0 0.08em rgba(255, 30, 30, 0.55),
-      0 0 0.26em rgba(255, 30, 30, 0.28);
+      0 0 0.08em rgba(255, 30, 30, 0.52),
+      0 0 0.24em rgba(255, 30, 30, 0.26);
   }
 
-  19.2%,
-  20.2% {
+  /* ~0.85s: full-word sputter blackout */
+  41%,
+  44.5% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Full-word sputter blackout */
-  45%,
+  45.5%,
   46.8% {
-    color: var(--glass-unlit);
-    text-shadow:
-      0 1px 0 var(--glass-rim),
-      0 0 2px rgba(22, 22, 26, 0.9);
-  }
-
-  47.5%,
-  48.4% {
     color: #ff9c9c;
     text-shadow:
       0 0 0.1em var(--neon-red),
       0 0 0.34em rgba(255, 30, 30, 0.65);
   }
 
-  49%,
-  50.2% {
+  47.5%,
+  49% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Voltage sag stutter */
-  70.2%,
-  72% {
+  /* ~1.45s: voltage sag + quick cut */
+  69%,
+  71.5% {
     color: #a82e2e;
     text-shadow:
       0 0 0.08em rgba(255, 30, 30, 0.42),
       0 0 0.22em rgba(255, 30, 30, 0.2);
   }
 
-  72.8%,
-  74% {
+  72.5%,
+  75% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Rapid end-of-cycle double drop */
-  90%,
-  91.4% {
-    color: var(--glass-unlit);
-    text-shadow:
-      0 1px 0 var(--glass-rim),
-      0 0 2px rgba(22, 22, 26, 0.9);
-  }
-
-  92.2%,
-  93.2% {
-    color: #ff8e8e;
-    text-shadow:
-      0 0 0.1em rgba(255, 30, 30, 0.6),
-      0 0 0.28em rgba(255, 30, 30, 0.3);
-  }
-
-  93.8%,
-  94.4% {
+  /* ~1.95s: quick snap dropout */
+  91.5%,
+  95.5% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
@@ -441,12 +425,12 @@ body {
 
 @keyframes room-o2-ballast {
   0%,
-  12%,
-  24%,
-  46%,
-  58%,
-  76%,
-  88%,
+  7%,
+  21%,
+  38%,
+  53%,
+  71%,
+  85%,
   100% {
     color: var(--neon-red-core);
     text-shadow:
@@ -458,73 +442,73 @@ body {
       0 0 1.35em rgba(255, 30, 30, 0.22);
   }
 
-  /* Rapid multi-sputter dropout */
-  13%,
-  16.5% {
+  /* Immediate ~0.15s double-drop */
+  9%,
+  13.5% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  17.5%,
-  19.2% {
+  15%,
+  16.8% {
     color: #ff8f8f;
     text-shadow:
       0 0 0.08em var(--neon-red),
       0 0 0.26em rgba(255, 30, 30, 0.55);
   }
 
-  20%,
-  23% {
+  17.5%,
+  19.8% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Heavy dead-tube stretch with arc flash */
-  47.5%,
-  51.5% {
+  /* ~0.65s dead-tube sputter */
+  40%,
+  46% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  52.5%,
-  53.8% {
+  47.2%,
+  48.8% {
     color: #a12929;
     text-shadow: 0 0 0.08em rgba(255, 30, 30, 0.38);
   }
 
-  54.6%,
-  57% {
+  49.6%,
+  52% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  /* Fast stutter burst */
-  77%,
-  79.5% {
+  /* ~1.15s quick stutter */
+  73%,
+  77.5% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
       0 0 2px rgba(22, 22, 26, 0.9);
   }
 
-  80.5%,
-  82% {
+  78.8%,
+  80.4% {
     color: #ff9c9c;
     text-shadow:
       0 0 0.08em rgba(255, 30, 30, 0.65),
       0 0 0.28em rgba(255, 30, 30, 0.35);
   }
 
-  83%,
-  87% {
+  81.2%,
+  84% {
     color: var(--glass-unlit);
     text-shadow:
       0 1px 0 var(--glass-rim),
